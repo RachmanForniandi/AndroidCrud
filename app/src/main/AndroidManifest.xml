@@ -21,7 +21,7 @@
         <activity android:name=".AddDataUser.AddDataUserActivity">
 
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".detailDataUser.DetailDataActivity" />
     </application>
 
 </manifest>
