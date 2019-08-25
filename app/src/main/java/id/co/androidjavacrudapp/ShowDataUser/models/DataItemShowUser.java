@@ -3,7 +3,9 @@ package id.co.androidjavacrudapp.ShowDataUser.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DataItemShowUser {
+import java.io.Serializable;
+
+public class DataItemShowUser implements Serializable {
 
 	@SerializedName("email_user")
 	private String emailUser;

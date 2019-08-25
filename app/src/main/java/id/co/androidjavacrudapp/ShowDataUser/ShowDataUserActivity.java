@@ -19,6 +19,7 @@ import id.co.androidjavacrudapp.R;
 import id.co.androidjavacrudapp.ShowDataUser.adapter.UserDataAdapter;
 import id.co.androidjavacrudapp.ShowDataUser.models.DataItemShowUser;
 import id.co.androidjavacrudapp.ShowDataUser.models.ResponseShowUser;
+import id.co.androidjavacrudapp.detailDataUser.DetailDataActivity;
 import id.co.androidjavacrudapp.networkUtils.NetworkClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,15 +48,25 @@ public class ShowDataUserActivity extends AppCompatActivity {
         NetworkClient.service.showUserData().enqueue(new Callback<ResponseShowUser>() {
             @Override
             public void onResponse(Call<ResponseShowUser> call, Response<ResponseShowUser> response) {
-                String message = response.body().getMessage();
-                if (response.isSuccessful()){
-                    dataItemList = response.body().getData();
-                    rvListUser.setLayoutManager(new LinearLayoutManager(ShowDataUserActivity.this,LinearLayoutManager.VERTICAL,false));
-                    userAdapter = new UserDataAdapter(ShowDataUserActivity.this,dataItemList);
-                    rvListUser.setAdapter(userAdapter);
-                }else {
-                    Toast.makeText(ShowDataUserActivity.this, message, Toast.LENGTH_SHORT).show();
 
+                if (response.isSuccessful()) {
+                    String message = response.body().getMessage();
+                    Boolean status = response.body().isStatus();
+                    if (status) {
+                        dataItemList = response.body().getData();
+                        rvListUser.setLayoutManager(new LinearLayoutManager(ShowDataUserActivity.this, LinearLayoutManager.VERTICAL, false));
+                        userAdapter = new UserDataAdapter(ShowDataUserActivity.this, dataItemList, new UserDataAdapter.onItemClick() {
+                            @Override
+                            public void item(DataItemShowUser data) {
+                                Intent intent = new Intent(ShowDataUserActivity.this, DetailDataActivity.class);
+                                intent.putExtra("data_user", data);
+                                startActivity(intent);
+                            }
+                        });
+                        rvListUser.setAdapter(userAdapter);
+                    } else {
+                        Toast.makeText(ShowDataUserActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 

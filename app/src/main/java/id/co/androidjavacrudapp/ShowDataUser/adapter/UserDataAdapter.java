@@ -18,10 +18,12 @@ import id.co.androidjavacrudapp.ShowDataUser.models.DataItemShowUser;
 public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.UserHolder> {
     Context context;
     List<DataItemShowUser> dataItemList;
+    onItemClick onItemClick;
 
-    public UserDataAdapter(Context context,List<DataItemShowUser> dataItemList ) {
+    public UserDataAdapter(Context context,List<DataItemShowUser> dataItemList,onItemClick onItemClick ) {
         this.context = context;
         this.dataItemList = dataItemList;
+        this.onItemClick = onItemClick;
 
     }
 
@@ -38,6 +40,13 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.UserHo
 
         holder.tvNameUser.setText(dataItemShowUser.getNamaUser());
         holder.tvEmailUser.setText(dataItemShowUser.getEmailUser());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.item(dataItemShowUser);
+            }
+        });
     }
 
     @Override
@@ -55,5 +64,9 @@ public class UserDataAdapter extends RecyclerView.Adapter<UserDataAdapter.UserHo
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
+    }
+
+    public interface onItemClick{
+        void item(DataItemShowUser data);
     }
 }

@@ -2,6 +2,7 @@ package id.co.androidjavacrudapp.networkUtils;
 
 import id.co.androidjavacrudapp.AddDataUser.models.ResponseAddData;
 import id.co.androidjavacrudapp.ShowDataUser.models.ResponseShowUser;
+import id.co.androidjavacrudapp.detailDataUser.models.ResponseDeleteData;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -21,4 +22,10 @@ public interface ApiServices {
 
     @GET("ShowDataUser")
     Call<ResponseShowUser> showUserData();
+
+    @FormUrlEncoded
+    @POST("DeleteDataUser")
+    Call<ResponseDeleteData>deleteUser(
+      @Field("id_user")String id_user
+    );
 }
