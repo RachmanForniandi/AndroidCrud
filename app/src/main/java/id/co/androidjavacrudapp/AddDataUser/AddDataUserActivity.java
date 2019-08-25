@@ -12,6 +12,7 @@ import butterknife.OnClick;
 import id.co.androidjavacrudapp.AddDataUser.models.ResponseAddData;
 import id.co.androidjavacrudapp.MainActivity;
 import id.co.androidjavacrudapp.R;
+import id.co.androidjavacrudapp.ShowDataUser.ShowDataUserActivity;
 import id.co.androidjavacrudapp.networkUtils.NetworkClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -64,7 +65,7 @@ public class AddDataUserActivity extends AppCompatActivity {
                         String message = response.body().getMessage();
 
                         if (status){
-                            startActivity(new Intent(AddDataUserActivity.this, MainActivity.class));
+                            startActivity(new Intent(AddDataUserActivity.this, ShowDataUserActivity.class));
                             Toast.makeText(AddDataUserActivity.this, message, Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(AddDataUserActivity.this, message, Toast.LENGTH_SHORT).show();
