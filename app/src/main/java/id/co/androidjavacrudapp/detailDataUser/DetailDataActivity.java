@@ -15,6 +15,7 @@ import id.co.androidjavacrudapp.R;
 import id.co.androidjavacrudapp.ShowDataUser.ShowDataUserActivity;
 import id.co.androidjavacrudapp.ShowDataUser.models.DataItemShowUser;
 import id.co.androidjavacrudapp.detailDataUser.models.ResponseDeleteData;
+import id.co.androidjavacrudapp.editDataUser.EditUserActivity;
 import id.co.androidjavacrudapp.networkUtils.NetworkClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +32,7 @@ public class DetailDataActivity extends AppCompatActivity {
     @BindView(R.id.btn_edit) Button btnEdit;
     DataItemShowUser dataItemShowUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class DetailDataActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         dataItemShowUser = (DataItemShowUser)getIntent().getSerializableExtra("data_user");
+
 
         paramIdUser.setText(dataItemShowUser.getIdUser());
         tvDetailName.setText(dataItemShowUser.getNamaUser());
@@ -60,6 +63,10 @@ public class DetailDataActivity extends AppCompatActivity {
     }
 
     private void actionEditDataUser() {
+
+        Intent toEdit =new Intent(DetailDataActivity.this, EditUserActivity.class);
+        toEdit.putExtra("data_user", dataItemShowUser);
+        startActivity(toEdit);
 
     }
 
