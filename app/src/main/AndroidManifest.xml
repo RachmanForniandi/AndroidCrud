@@ -3,6 +3,7 @@
     package="id.co.androidjavacrudapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".uploadImage.UploadImageActivity"></activity>
+        <activity android:name=".editDataUser.EditUserActivity" />
         <activity android:name=".ShowDataUser.ShowDataUserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,9 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddDataUser.AddDataUserActivity">
-
-        </activity>
+        <activity android:name=".AddDataUser.AddDataUserActivity" />
         <activity android:name=".detailDataUser.DetailDataActivity" />
     </application>
 
